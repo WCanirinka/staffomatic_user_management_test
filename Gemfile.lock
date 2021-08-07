@@ -100,6 +100,9 @@ GEM
     nokogiri (1.12.2)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
+    paper_trail (12.0.0)
+      activerecord (>= 5.2)
+      request_store (~> 1.1)
     puma (5.4.0)
       nio4r (~> 2.0)
     racc (1.5.2)
@@ -140,6 +143,8 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    request_store (1.5.0)
+      rack (>= 1.4)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -184,6 +189,7 @@ DEPENDENCIES
   jwt
   listen (~> 3.3)
   mysql2 (~> 0.5)
+  paper_trail
   puma (~> 5.0)
   rails (~> 6.1.1)
   rspec-rails (~> 4.0.2)
@@ -194,4 +200,4 @@ RUBY VERSION
    ruby 2.6.6p146
 
 BUNDLED WITH
-   2.1.4
+   2.2.25

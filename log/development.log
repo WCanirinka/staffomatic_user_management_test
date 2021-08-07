@@ -328,3 +328,42 @@ Started GET "/favicon.ico" for 172.18.0.1 at 2021-08-06 07:57:46 +0000
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Started GET "/" for 172.18.0.1 at 2021-08-06 11:22:58 +0000
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-6.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-6.1.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 13.9ms | Allocations: 308)
+Completed 200 OK in 42ms (Views: 19.0ms | ActiveRecord: 0.0ms | Allocations: 2501)
+
+
+Started POST "/signup" for 172.18.0.1 at 2021-08-06 11:32:41 +0000
+Processing by SignupsController#create as */*
+  Parameters: {"data"=>{"attributes"=>{"email"=>"admin@easypep.de", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}, "signup"=>{"data"=>{"attributes"=>{"email"=>"admin@easypep.de", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/signups_controller.rb:8:in `create'
+  [1m[36mUser Exists? (3.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'admin@easypep.de' LIMIT 1[0m
+  ↳ app/controllers/signups_controller.rb:8:in `create'
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO `users` (`email`, `password_digest`, `created_at`, `updated_at`) VALUES ('admin@easypep.de', '$2a$12$unoTyixIZXhyQq0pJqCQmu4KMkIaDA87LFHKmDYjDnuRPkJ6tzYaC', '2021-08-06 11:32:41.360797', '2021-08-06 11:32:41.360797')[0m
+  ↳ app/controllers/signups_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (6.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/signups_controller.rb:8:in `create'
+Completed 201 Created in 314ms (Views: 2.2ms | ActiveRecord: 25.5ms | Allocations: 7920)
+
+
+Started POST "/authentications" for 172.18.0.1 at 2021-08-06 11:32:57 +0000
+Processing by AuthenticationsController#create as */*
+  Parameters: {"authentication"=>{"email"=>"admin@easypep.de", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'admin@easypep.de' LIMIT 1[0m
+  ↳ app/controllers/authentications_controller.rb:5:in `create'
+Completed 201 Created in 258ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 1091)
+
+
+Started GET "/users" for 172.18.0.1 at 2021-08-06 11:33:16 +0000
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` IS NULL LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Filter chain halted as :authorize! rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 794)
+
+
